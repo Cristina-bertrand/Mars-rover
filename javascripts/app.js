@@ -3,10 +3,12 @@ var myRover = {
   direction:  "N",
   movements: "",
   commands:"",
+  position: [0,0],
   x: 0,
   y: 0,
 travelLog: [],
 };
+
 
 console.log("My Rover direction" + myRover.direction);
 
@@ -22,6 +24,11 @@ var board = [
 
 console.log(board);
 
+function myFunction(){
+var commands = prompt("Enter your commands here", "rlf");
+}
+myFunction ();
+
 function commands (myRover){
 
   for(var i=0; i<10; i++){
@@ -33,7 +40,7 @@ function commands (myRover){
             turnLeft (myRover);
             break;
             case "f":
-            moveForward(myRover);
+            goForward(myRover);
             break;
             }
   }
@@ -76,21 +83,58 @@ function turnRight(myRover){
   console.log("turnRight was called!" + myRover.direction);
 }
 
-function moveForward(myRover){
+function goForward(myRover){
+
   switch (myRover.direction) {
+
     case "N":
-      myRover.direction = "y-1";
+      if(myRover.y>0 ){
+         myRover.y-=1;
+       }
       break;
     case "S":
-        myRover.direction = "y+1";
+        if (myRover.y<10){
+          myRover.y+=1;
+        }
       break;
     case "E":
-        myRover.direction = "x+1";
+    if (myRover.x<10){
+      myRover.x+=1;
+    }
       break;
     case "W":
-        myRover.direction = "x-1";
+    if (myRover.x<10){
+      myRover.x-=1;
+    }
       break;
-    default:
+  }
+  console.log("moveForward was called" + myRover.direction);
+}
+
+function goBackward(myRover){
+
+  switch (myRover.direction) {
+
+    case "N":
+      if(myRover.y<10 ){
+         myRover.y+=1;
+       }
+      break;
+    case "S":
+        if (myRover.y>0){
+          myRover.y-=1;
+        }
+      break;
+    case "E":
+    if (myRover.x>0){
+      myRover.x-=1;
+    }
+      break;
+    case "W":
+    if (myRover.x>0){
+      myRover.x+=1;
+    }
+      break;
   }
   console.log("moveForward was called" + myRover.direction);
 }
